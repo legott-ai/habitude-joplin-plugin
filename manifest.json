@@ -1,0 +1,14 @@
+{
+  "manifest_version": 1,
+  "id": "ai.habitude.export",
+  "app_min_version": "3.0",
+  "version": "0.1.0",
+  "name": "Habitude — Selected note export",
+  "description": "Export a selected Markdown note locally for Habitude, with source identity and explicit confirmation. 한국어·English.",
+  "author": "Habitude",
+  "platforms": ["desktop"],
+  "homepage_url": "https://habitude.ai",
+  "repository_url": "https://github.com/legott-ai/habitude-joplin-plugin",
+  "categories": ["files", "integrations"],
+  "keywords": ["habitude", "journal", "markdown", "export", "privacy"]
+}
