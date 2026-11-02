@@ -1,4 +1,4 @@
-# Habitude for Joplin · 0.1.0
+# Habitude for Joplin · 0.1.1
 
 한국어: Joplin의 선택한 Markdown 기록을 Habitude에서 가져올 수 있는 파일로 내보냅니다. **Tools → Habitude: 선택 기록 내보내기** 또는 기록 도구 모음의 내보내기를 누른 뒤 제목을 확인하고 저장할 폴더를 고르세요. Habitude의 **설정 → 데이터 → 파일 가져오기 → Joplin**에서 파일을 선택하고 미리 본 뒤 가져옵니다. **Tools → Habitude 열기**는 본문을 전송하지 않고 Habitude 웹사이트를 엽니다. 플러그인 설정의 언어에서 한국어·English를 선택합니다.
 
@@ -6,7 +6,7 @@ English: Select one Markdown note and choose **Tools → Habitude: Export select
 
 ## Install / 설치
 
-Joplin desktop → Settings/Preferences → Plugins → Advanced settings → Install from file → choose `habitude-joplin-0.1.0.jpl`, then restart Joplin. This is a manually installable release. A downloadable release is separate from acceptance into Joplin's plugin directory.
+Joplin desktop → Settings/Preferences → Plugins → Advanced settings → Install from file → choose `habitude-joplin-0.1.1.jpl`, then restart Joplin. This is a manually installable release. A downloadable release is separate from acceptance into Joplin's plugin directory.
 
 데스크톱 Joplin의 설정 → 플러그인 → 고급 설정 → 파일에서 설치에서 `.jpl`을 선택하고 Joplin을 다시 시작합니다. 모바일 플러그인으로 등록하지 않습니다.
 
@@ -36,4 +36,4 @@ This is a genuine isolated host screenshot with synthetic writing. It does not s
 
 ## Build this source repository
 
-Run `npm test`, then `npm run build`. No npm dependencies are required. The builder regenerates `index.js` and a portable `.jpl` in `dist/`. The public source package metadata contains developer scripts; release packages are pinned separately by their published SHA-256.
+Run `npm test`, `npm run build`, then `npm run verify`. No npm dependencies are required. The builder regenerates `index.js`, a versioned portable `.jpl` in `dist/`, and the official registry pair `publish/ai.habitude.export.jpl` plus `publish/ai.habitude.export.json`. The metadata contains the archive SHA-256; npm includes both generated files because the repository updater installs with lifecycle scripts disabled. `npm publish` first runs the same tests, build and verification. Version 0.1.1 corrects registry packaging; the export runtime is unchanged from the tested 0.1.0 release.

@@ -1,6 +1,6 @@
 {
   "name": "joplin-plugin-habitude",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Explicit local selected-note export for Habitude",
   "main": "index.js",
   "homepage": "https://habitude.ai",
@@ -15,10 +15,12 @@
   "license": "MIT",
   "scripts": {
     "test": "node --test test/*.test.cjs",
-    "build": "node build.cjs"
+    "build": "node build.cjs",
+    "verify": "node verify.cjs",
+    "prepublishOnly": "npm test && npm run build && npm run verify"
   },
   "files": [
-    "dist",
+    "publish",
     "manifest.json",
     "README.md",
     "LICENSE"
