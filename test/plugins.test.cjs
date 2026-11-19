@@ -7,7 +7,7 @@ const { registerJoplin } = require('../src/index.cjs');
 const note = () => ({ id: 'ABCDEF0123456789ABCDEF0123456789', title: '합성 기록 "Example"', body: '# 원문\n- [x] written checkbox\n![source](:/0123456789abcdef0123456789abcdef)', markup_language: 1, encryption_applied: 0, created_time: 1793613600000, updated_time: 1793615400000 });
 const page = () => ({ uuid: '01234567-89ab-cdef-0123-456789abcdef', name: 'example', originalName: '예시 & Example', format: 'markdown', type: 'page', createdAt: 1793613600000, updatedAt: 1793615400000 });
 const blocks = () => [{ uuid: 'aaaaaaaa-1111-2222-3333-444444444444', content: 'TODO 합성 글\ncontinued **original**', children: [{ uuid: 'bbbbbbbb-1111-2222-3333-444444444444', content: '- [x] 원문 체크박스 ((source))' }] }];
-const graph = () => ({ name: 'Synthetic graph' });
+const graph = () => ({ name: 'Synthetic graph', path: '/synthetic/graph', url: 'logseq_local_/synthetic/graph' });
 
 test('native identity, true source timestamps and exact Joplin body survive export', () => {
   const original = note(), before = JSON.stringify(original), result = portable.fromJoplinNote(original, 42);
@@ -98,5 +98,15 @@ test('Joplin rejects a second action while review is pending and opens Habitude 
   resolve({ id: 'cancel' }); await first;
   await h.commands.get('habitudeOpen').execute();
   assert.deepEqual(h.external, [['openItem', 'https://habitude.ai']]);
+});
+
+test('Joplin review and saved message point to the web journal import in both languages, never to a Mac-only screen', async () => {
+  for (const [language, path] of [['en', 'Settings → Import Obsidian journal notes → Choose Markdown files'], ['ko', '설정 → Obsidian 일기 가져오기 → Markdown 파일 선택']]) {
+    const h = await joplinHarness({ language }); await h.export();
+    const shown = h.dialogs[0] + h.messages.join('\n');
+    assert.ok(h.dialogs[0].includes(path) && h.dialogs[0].includes('habitude.ai/app'), language);
+    assert.ok(h.messages.at(-1).includes(path), language);
+    assert.ok(!/File import|파일 가져오기|Mac app|Mac 앱/.test(shown), language);
+  }
 });
 

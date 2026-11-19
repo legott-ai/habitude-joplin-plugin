@@ -1,17 +1,21 @@
 {
   "name": "joplin-plugin-habitude",
-  "version": "0.1.1",
-  "description": "Explicit local selected-note export for Habitude",
+  "version": "0.1.2",
+  "description": "Export a selected Joplin note as a Markdown file for Habitude",
   "main": "index.js",
-  "homepage": "https://habitude.ai",
+  "homepage": "https://habitude.ai/integrations",
   "repository": {
     "type": "git",
-    "url": "https://github.com/legott-ai/habitude-joplin-plugin.git"
+    "url": "git+https://github.com/legott-ai/habitude-joplin-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/legott-ai/habitude-joplin-plugin/issues"
   },
   "keywords": [
     "joplin-plugin",
     "habitude"
   ],
+  "author": "Habitude",
   "license": "MIT",
   "scripts": {
     "test": "node --test test/*.test.cjs",
